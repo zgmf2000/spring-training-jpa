@@ -39,8 +39,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>mssql-jdbc</artifactId>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.191</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
