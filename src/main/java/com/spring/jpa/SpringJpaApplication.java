@@ -6,6 +6,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
 public class SpringJpaApplication {
@@ -25,6 +28,18 @@ public class SpringJpaApplication {
 			repository.save(newEmployee);
 			newEmployee = new Employee("Joan", "Travolta", "Female");
 			repository.save(newEmployee);
+		};
+	}
+
+	//Configure Global CORS
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurerAdapter() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				//Add a new map for each map you want to make CORS-able.
+				registry.addMapping("employees/{empId}/experiment").allowedOrigins("http://localhost:4200");
+			}
 		};
 	}
 }
